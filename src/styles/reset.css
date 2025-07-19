@@ -15,6 +15,12 @@ html {
   width: 100dvw;
 }
 
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: textfield;
+}
+
 button,
 input,
 textarea {
