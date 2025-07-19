@@ -38,19 +38,19 @@
         <div class="select-percentage-container">
           <label for="input-percentage" class="label">Select Tip %</label>
           <div class="select-percentage-grid">
-            <button data-percentage="5" class="btn btn-select-percentage">
+            <button data-percentage="5" class="btn btn--select-percentage">
               5%
             </button>
-            <button data-percentage="10" class="btn btn-select-percentage">
+            <button data-percentage="10" class="btn btn--select-percentage">
               10%
             </button>
-            <button data-percentage="15" class="btn btn-select-percentage">
+            <button data-percentage="15" class="btn btn--select-percentage">
               15%
             </button>
-            <button data-percentage="25" class="btn btn-select-percentage">
+            <button data-percentage="25" class="btn btn--select-percentage">
               25%
             </button>
-            <button data-percentage="50" class="btn btn-select-percentage">
+            <button data-percentage="50" class="btn btn--select-percentage">
               50%
             </button>
             <input
@@ -81,7 +81,31 @@
           </div>
         </div>
       </form>
-      <div class="calc__result"></div>
+      <aside class="calc__result">
+        <div>
+          <div class="tip-info-container">
+            <div class="tip-info">
+              <div class="tip-info__type">
+                <span class="tip-info__title">Tip Amount</span>
+                <small class="tip-info__category">/ person</small>
+              </div>
+              <span class="tip-info__value tip-info__value--tip-amount"
+                >$0.00</span
+              >
+            </div>
+            <div class="tip-info">
+              <div class="tip-info__type">
+                <span class="tip-info__title">Total</span>
+                <small class="tip-info__category">/ person</small>
+              </div>
+              <span class="tip-info__value tip-info__value--total-per-person"
+                >$0.00</span
+              >
+            </div>
+          </div>
+        </div>
+        <button class="btn btn--reset">reset</button>
+      </aside>
     </article>
   </body>
 </html>
