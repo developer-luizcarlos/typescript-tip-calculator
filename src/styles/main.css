@@ -142,6 +142,11 @@ body {
   background-color: var(--neutral-green-200);
 }
 
+.btn--reset:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .btn--select-percentage {
   background-color: var(--neutral-green-900);
   color: var(--neutral-white);
