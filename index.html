@@ -12,5 +12,76 @@
     <title>Tip Calculator | A Frontend Mentor's Challenge</title>
     <script defer src="dist/scripts/main.js"></script>
   </head>
-  <body></body>
+  <body>
+    <h1 class="logo">spli<br />tter</h1>
+    <article class="calc">
+      <form class="calc__form">
+        <div class="input-container">
+          <div class="grid-full-spaced">
+            <label for="bill-input" class="label">Bill</label>
+            <span class="error-message error-message--bill">Error</span>
+          </div>
+          <div class="input-wrapper">
+            <img
+              src="assets/images/icon-dollar.svg"
+              alt="dollar icon"
+              class="input-wrapper__icon"
+            />
+            <input
+              type="number"
+              placeholder="0"
+              id="bill-input"
+              class="input"
+            />
+          </div>
+        </div>
+        <div class="select-percentage-container">
+          <label for="input-percentage" class="label">Select Tip %</label>
+          <div class="select-percentage-grid">
+            <button data-percentage="5" class="btn btn-select-percentage">
+              5%
+            </button>
+            <button data-percentage="10" class="btn btn-select-percentage">
+              10%
+            </button>
+            <button data-percentage="15" class="btn btn-select-percentage">
+              15%
+            </button>
+            <button data-percentage="25" class="btn btn-select-percentage">
+              25%
+            </button>
+            <button data-percentage="50" class="btn btn-select-percentage">
+              50%
+            </button>
+            <input
+              type="number"
+              placeholder="0"
+              id="input-percentage"
+              class="input input--percentage"
+            />
+          </div>
+        </div>
+        <div class="input-container">
+          <div class="grid-full-spaced">
+            <label for="people-input" class="label">Number of People</label>
+            <span class="error-message error-message--people">Error</span>
+          </div>
+          <div class="input-wrapper">
+            <img
+              src="assets/images/icon-person.svg"
+              alt="people icon"
+              class="input-wrapper__icon"
+            />
+            <input
+              type="number"
+              placeholder="0"
+              id="people-input"
+              class="input"
+            />
+          </div>
+        </div>
+      </form>
+      <div class="calc__result"></div>
+    </article>
+  </body>
 </html>

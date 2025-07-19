@@ -3,5 +3,142 @@
 @import url(variables.css);
 
 body {
+  align-items: center;
+  background-color: var(--neutral-green-200);
+  display: flex;
+  flex-direction: column;
   font-family: "Space Mono", monospace;
+  justify-content: center;
+  row-gap: 40px;
+}
+
+.logo {
+  color: var(--neutral-green-900);
+  letter-spacing: 0.4rem;
+  text-transform: uppercase;
+}
+
+.calc {
+  background-color: var(--neutral-white);
+  border-radius: 8px;
+  box-shadow: 3px 1px 20px 3px rgba(0, 0, 0, 0.136);
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 700px;
+  min-width: 500px;
+  min-width: 60vw;
+  padding: 2.5rem;
+}
+
+.calc__form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.calc__result {
+  background-color: var(--neutral-green-900);
+  border-radius: 8px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grid-full-spaced {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.label {
+  color: var(--neutral-green-900);
+  font-weight: bold;
+}
+
+.input-wrapper {
+  background-color: var(--neutral-green-50);
+  border-radius: 2px;
+  display: flex;
+  height: 42px;
+}
+
+.input-wrapper:focus-within {
+  outline: 2px solid var(--primary-green-400);
+  transition: outline-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.input-wrapper--error:focus-within {
+  outline: 2px solid red;
+  transition: outline-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.input-wrapper__icon {
+  align-self: center;
+  padding-inline: 10px;
+}
+
+.input {
+  background-color: transparent;
+  color: var(--neutral-green-900);
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding-inline: 10px;
+  text-align: right;
+  width: 100%;
+}
+
+.input--percentage {
+  background-color: var(--neutral-green-50);
+  border-radius: 2px;
+}
+
+.input--percentage:focus {
+  outline: 2px solid var(--primary-green-400);
+}
+
+.select-percentage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.select-percentage-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 40px);
+}
+
+.btn {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  min-height: 40px;
+}
+
+.btn-select-percentage {
+  color: var(--neutral-white);
+  background-color: var(--neutral-green-900);
+  border-radius: 3px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  transition: background 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-select-percentage:hover,
+.btn-select-percentage:focus {
+  color: var(--neutral-green-900);
+  background-color: var(--primary-green-400);
 }
