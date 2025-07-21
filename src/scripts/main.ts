@@ -50,7 +50,7 @@ const formatInputValueToMoney = (e: Event) => {
   return formattedValue;
 };
 
-const isInputValueInvalid = (e: Event) => {
+const isInputValueValid = (e: Event) => {
   const inputValue = (e.target as HTMLInputElement).value;
   const isInvalidInputNumberValue =
     inputValue.trim() !== "" && !isNaN(Number(inputValue));
@@ -64,13 +64,13 @@ calcForm!.addEventListener("submit", (e) => {
 
 inputBill!.addEventListener("input", (e) => {
   const value = (e.target as HTMLInputElement).value;
-  tipInfo.bill = isInputValueInvalid(e) ? parseFloat(value) : 0;
+  tipInfo.bill = isInputValueValid(e) ? parseFloat(value) : 0;
 });
 
 inputBill!.addEventListener("blur", (e) => {
   const controlError = handleErrorMsg(spanBillError as HTMLElement);
 
-  if (isInputValueInvalid(e)) {
+  if (isInputValueValid(e)) {
     inputBill!.value = formatInputValueToMoney(e);
     controlError.hide(inputWrapperBill as HTMLElement);
   } else {
@@ -82,22 +82,16 @@ inputBill!.addEventListener("focus", (e) => {
   inputBill!.value = formatMoneyToInputValidValue(e);
 });
 
-inputPeople!.addEventListener("blur", (e) => {
+inputPeople!.addEventListener("input", (e) => {
+  const value = (e.target as HTMLInputElement).value;
   const controlError = handleErrorMsg(spanPeopleError as HTMLElement);
+  const isValidValue = isInputValueValid(e) && Number(value) !== 0;
 
-  if (isInputValueInvalid(e)) {
-    inputPeople!.value = formatInputValueToMoney(e);
+  if (isValidValue) {
     controlError!.hide(inputWrapperPeople as HTMLElement);
   } else {
     controlError.show(inputWrapperPeople as HTMLElement, "Can't be zero");
   }
-});
 
-inputPeople!.addEventListener("focus", (e) => {
-  inputPeople!.value = formatMoneyToInputValidValue(e);
-});
-
-inputPeople!.addEventListener("input", (e) => {
-  const value = (e.target as HTMLInputElement).value;
-  tipInfo.numberOfPeople = isInputValueInvalid(e) ? parseFloat(value) : 0;
+  tipInfo.numberOfPeople = isValidValue ? parseFloat(value) : 0;
 });

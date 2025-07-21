@@ -18,4 +18,4 @@ declare const handleErrorMsg: (errorElement: HTMLElement) => {
 };
 declare const formatMoneyToInputValidValue: (e: Event) => string;
 declare const formatInputValueToMoney: (e: Event) => string;
-declare const isInputValueInvalid: (e: Event) => boolean;
+declare const isInputValueValid: (e: Event) => boolean;
