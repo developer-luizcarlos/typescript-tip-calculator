@@ -6,7 +6,7 @@ const inputBill = document.querySelector("#input-bill");
 const inputPeople = document.querySelector("#input-people");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
-const controlErrorMsg = (errorElement) => {
+const handleErrorMsg = (errorElement) => {
     const show = (inputElement, message) => {
         inputElement.classList.add("input-wrapper--error");
         errorElement.style.visibility = "visible";
@@ -42,7 +42,7 @@ calcForm.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 inputBill.addEventListener("blur", (e) => {
-    const controlError = controlErrorMsg(spanBillError);
+    const controlError = handleErrorMsg(spanBillError);
     if (isInputValueInvalid(e)) {
         inputBill.value = formatInputValueToMoney(e);
         controlError.hide(inputWrapperBill);
@@ -55,7 +55,7 @@ inputBill.addEventListener("focus", (e) => {
     inputBill.value = formatMoneyToInputValidValue(e);
 });
 inputPeople.addEventListener("blur", (e) => {
-    const controlError = controlErrorMsg(spanPeopleError);
+    const controlError = handleErrorMsg(spanPeopleError);
     if (isInputValueInvalid(e)) {
         inputPeople.value = formatInputValueToMoney(e);
         controlError.hide(inputWrapperPeople);

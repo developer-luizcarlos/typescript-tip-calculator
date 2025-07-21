@@ -5,7 +5,7 @@ declare const inputBill: HTMLInputElement | null;
 declare const inputPeople: HTMLInputElement | null;
 declare const spanBillError: Element | null;
 declare const spanPeopleError: Element | null;
-declare const controlErrorMsg: (errorElement: HTMLElement) => {
+declare const handleErrorMsg: (errorElement: HTMLElement) => {
     show: (inputElement: HTMLElement, message: string) => void;
     hide: (inputElement: HTMLElement) => void;
 };

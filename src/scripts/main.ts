@@ -8,7 +8,7 @@ const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
 
 // Functions
-const controlErrorMsg = (errorElement: HTMLElement) => {
+const handleErrorMsg = (errorElement: HTMLElement) => {
   const show = (inputElement: HTMLElement, message: string) => {
     inputElement!.classList.add("input-wrapper--error");
     errorElement.style.visibility = "visible";
@@ -54,7 +54,7 @@ calcForm!.addEventListener("submit", (e) => {
 });
 
 inputBill!.addEventListener("blur", (e) => {
-  const controlError = controlErrorMsg(spanBillError as HTMLElement);
+  const controlError = handleErrorMsg(spanBillError as HTMLElement);
 
   if (isInputValueInvalid(e)) {
     inputBill!.value = formatInputValueToMoney(e);
@@ -69,7 +69,7 @@ inputBill!.addEventListener("focus", (e) => {
 });
 
 inputPeople!.addEventListener("blur", (e) => {
-  const controlError = controlErrorMsg(spanPeopleError as HTMLElement);
+  const controlError = handleErrorMsg(spanPeopleError as HTMLElement);
 
   if (isInputValueInvalid(e)) {
     inputPeople!.value = formatInputValueToMoney(e);
