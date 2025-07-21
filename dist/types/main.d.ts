@@ -1,3 +1,4 @@
+declare const calcForm: HTMLFormElement | null;
 declare const inputWrapperBill: Element | null;
 declare const inputWrapperPeople: Element | null;
 declare const inputBill: HTMLInputElement | null;

@@ -1,4 +1,5 @@
 // DOM Elements
+const calcForm = document.querySelector<HTMLFormElement>(".calc__form");
 const inputWrapperBill = document.querySelector(".input-wrapper--bill");
 const inputWrapperPeople = document.querySelector(".input-wrapper--people");
 const inputBill = document.querySelector<HTMLInputElement>("#input-bill");
@@ -48,6 +49,10 @@ const isInputValueInvalid = (e: Event) => {
 };
 
 // Events/Functions Applied
+calcForm!.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
 inputBill!.addEventListener("blur", (e) => {
   const controlError = controlErrorMsg(spanBillError as HTMLElement);
 

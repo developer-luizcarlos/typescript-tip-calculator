@@ -1,4 +1,5 @@
 "use strict";
+const calcForm = document.querySelector(".calc__form");
 const inputWrapperBill = document.querySelector(".input-wrapper--bill");
 const inputWrapperPeople = document.querySelector(".input-wrapper--people");
 const inputBill = document.querySelector("#input-bill");
@@ -37,6 +38,9 @@ const isInputValueInvalid = (e) => {
     const isInvalidInputNumberValue = inputValue.trim() !== "" && !isNaN(Number(inputValue));
     return isInvalidInputNumberValue;
 };
+calcForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+});
 inputBill.addEventListener("blur", (e) => {
     const controlError = controlErrorMsg(spanBillError);
     if (isInputValueInvalid(e)) {
