@@ -6,6 +6,15 @@ const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
 
 // Functions
+const formatMoneyToInputValidValue = (e: Event) => {
+  const inputValue = (e.target as HTMLInputElement).value;
+  let formattedValue = inputValue;
+
+  // formattedValue = inputValue.slice(0, inputValue.indexOf("."));
+  formattedValue = inputValue.replace(/[A-Z]|\,|\s|[^\w.]/gi, "").trim();
+  return formattedValue;
+};
+
 const formatInputValueToMoney = (e: Event) => {
   const inputValue = (e.target as HTMLInputElement).value;
   const formatter = new Intl.NumberFormat("en-US", {
@@ -33,6 +42,6 @@ inputBill!.addEventListener("blur", (e) => {
   }
 });
 
-inputBill!.addEventListener("input", (e) => {
-  inputBill!.type = "number";
+inputBill!.addEventListener("focus", (e) => {
+  inputBill!.value = formatMoneyToInputValidValue(e);
 });

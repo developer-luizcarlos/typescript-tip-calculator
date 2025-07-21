@@ -3,6 +3,12 @@ const inputBill = document.querySelector("#input-bill");
 const inputPeople = document.querySelector("#input-percentage");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
+const formatMoneyToInputValidValue = (e) => {
+    const inputValue = e.target.value;
+    let formattedValue = inputValue;
+    formattedValue = inputValue.replace(/[A-Z]|\,|\s|[^\w.]/gi, "").trim();
+    return formattedValue;
+};
 const formatInputValueToMoney = (e) => {
     const inputValue = e.target.value;
     const formatter = new Intl.NumberFormat("en-US", {
@@ -26,6 +32,6 @@ inputBill.addEventListener("blur", (e) => {
         inputBill.value = "0";
     }
 });
-inputBill.addEventListener("input", (e) => {
-    inputBill.type = "number";
+inputBill.addEventListener("focus", (e) => {
+    inputBill.value = formatMoneyToInputValidValue(e);
 });
