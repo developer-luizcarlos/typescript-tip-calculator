@@ -6,6 +6,13 @@ const inputBill = document.querySelector("#input-bill");
 const inputPeople = document.querySelector("#input-people");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
+const tipInfo = {
+    bill: 0,
+    numberOfPeople: 0,
+    percentage: 0,
+    tipAmount: 0,
+    tipPerPerson: 0,
+};
 const handleErrorMsg = (errorElement) => {
     const show = (inputElement, message) => {
         inputElement.classList.add("input-wrapper--error");
@@ -41,6 +48,10 @@ const isInputValueInvalid = (e) => {
 calcForm.addEventListener("submit", (e) => {
     e.preventDefault();
 });
+inputBill.addEventListener("input", (e) => {
+    const value = e.target.value;
+    tipInfo.bill = isInputValueInvalid(e) ? parseFloat(value) : 0;
+});
 inputBill.addEventListener("blur", (e) => {
     const controlError = handleErrorMsg(spanBillError);
     if (isInputValueInvalid(e)) {
@@ -66,4 +77,8 @@ inputPeople.addEventListener("blur", (e) => {
 });
 inputPeople.addEventListener("focus", (e) => {
     inputPeople.value = formatMoneyToInputValidValue(e);
+});
+inputPeople.addEventListener("input", (e) => {
+    const value = e.target.value;
+    tipInfo.numberOfPeople = isInputValueInvalid(e) ? parseFloat(value) : 0;
 });
