@@ -1,6 +1,6 @@
 "use strict";
 const inputBill = document.querySelector("#input-bill");
-const inputPeople = document.querySelector("#input-percentage");
+const inputPeople = document.querySelector("#input-people");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
 const formatMoneyToInputValidValue = (e) => {
@@ -34,4 +34,16 @@ inputBill.addEventListener("blur", (e) => {
 });
 inputBill.addEventListener("focus", (e) => {
     inputBill.value = formatMoneyToInputValidValue(e);
+});
+inputPeople.addEventListener("blur", (e) => {
+    inputPeople.type = "text";
+    if (isInputValueInvalid(e)) {
+        inputPeople.value = formatInputValueToMoney(e);
+    }
+    else {
+        inputPeople.value = "0";
+    }
+});
+inputPeople.addEventListener("focus", (e) => {
+    inputPeople.value = formatMoneyToInputValidValue(e);
 });

@@ -1,7 +1,6 @@
 // DOM Elements
 const inputBill = document.querySelector<HTMLInputElement>("#input-bill");
-const inputPeople =
-  document.querySelector<HTMLInputElement>("#input-percentage");
+const inputPeople = document.querySelector<HTMLInputElement>("#input-people");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
 
@@ -43,4 +42,17 @@ inputBill!.addEventListener("blur", (e) => {
 
 inputBill!.addEventListener("focus", (e) => {
   inputBill!.value = formatMoneyToInputValidValue(e);
+});
+
+inputPeople!.addEventListener("blur", (e) => {
+  inputPeople!.type = "text";
+  if (isInputValueInvalid(e)) {
+    inputPeople!.value = formatInputValueToMoney(e);
+  } else {
+    inputPeople!.value = "0";
+  }
+});
+
+inputPeople!.addEventListener("focus", (e) => {
+  inputPeople!.value = formatMoneyToInputValidValue(e);
 });
