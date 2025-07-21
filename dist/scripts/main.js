@@ -1,8 +1,22 @@
 "use strict";
+const inputWrapperBill = document.querySelector(".input-wrapper--bill");
+const inputWrapperPeople = document.querySelector(".input-wrapper--people");
 const inputBill = document.querySelector("#input-bill");
 const inputPeople = document.querySelector("#input-people");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
+const controlErrorMsg = (errorElement) => {
+    const show = (inputElement, message) => {
+        inputElement.classList.add("input-wrapper--error");
+        errorElement.style.visibility = "visible";
+        errorElement.textContent = message;
+    };
+    const hide = (inputElement) => {
+        inputElement.classList.remove("input-wrapper--error");
+        errorElement.style.visibility = "hidden";
+    };
+    return { show, hide };
+};
 const formatMoneyToInputValidValue = (e) => {
     const inputValue = e.target.value;
     let formattedValue = inputValue;
@@ -24,24 +38,26 @@ const isInputValueInvalid = (e) => {
     return isInvalidInputNumberValue;
 };
 inputBill.addEventListener("blur", (e) => {
-    inputBill.type = "text";
+    const controlError = controlErrorMsg(spanBillError);
     if (isInputValueInvalid(e)) {
         inputBill.value = formatInputValueToMoney(e);
+        controlError.hide(inputWrapperBill);
     }
     else {
-        inputBill.value = "0";
+        controlError.show(inputWrapperBill, "Can't be zero");
     }
 });
 inputBill.addEventListener("focus", (e) => {
     inputBill.value = formatMoneyToInputValidValue(e);
 });
 inputPeople.addEventListener("blur", (e) => {
-    inputPeople.type = "text";
+    const controlError = controlErrorMsg(spanPeopleError);
     if (isInputValueInvalid(e)) {
         inputPeople.value = formatInputValueToMoney(e);
+        controlError.hide(inputWrapperPeople);
     }
     else {
-        inputPeople.value = "0";
+        controlError.show(inputWrapperPeople, "Can't be zero");
     }
 });
 inputPeople.addEventListener("focus", (e) => {

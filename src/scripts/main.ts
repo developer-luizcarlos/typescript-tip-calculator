@@ -1,10 +1,27 @@
 // DOM Elements
+const inputWrapperBill = document.querySelector(".input-wrapper--bill");
+const inputWrapperPeople = document.querySelector(".input-wrapper--people");
 const inputBill = document.querySelector<HTMLInputElement>("#input-bill");
 const inputPeople = document.querySelector<HTMLInputElement>("#input-people");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
 
 // Functions
+const controlErrorMsg = (errorElement: HTMLElement) => {
+  const show = (inputElement: HTMLElement, message: string) => {
+    inputElement!.classList.add("input-wrapper--error");
+    errorElement.style.visibility = "visible";
+    errorElement.textContent = message;
+  };
+
+  const hide = (inputElement: HTMLElement) => {
+    inputElement!.classList.remove("input-wrapper--error");
+    errorElement.style.visibility = "hidden";
+  };
+
+  return { show, hide };
+};
+
 const formatMoneyToInputValidValue = (e: Event) => {
   const inputValue = (e.target as HTMLInputElement).value;
   let formattedValue = inputValue;
@@ -32,11 +49,13 @@ const isInputValueInvalid = (e: Event) => {
 
 // Events/Functions Applied
 inputBill!.addEventListener("blur", (e) => {
-  inputBill!.type = "text";
+  const controlError = controlErrorMsg(spanBillError as HTMLElement);
+
   if (isInputValueInvalid(e)) {
     inputBill!.value = formatInputValueToMoney(e);
+    controlError.hide(inputWrapperBill as HTMLElement);
   } else {
-    inputBill!.value = "0";
+    controlError.show(inputWrapperBill as HTMLElement, "Can't be zero");
   }
 });
 
@@ -45,11 +64,13 @@ inputBill!.addEventListener("focus", (e) => {
 });
 
 inputPeople!.addEventListener("blur", (e) => {
-  inputPeople!.type = "text";
+  const controlError = controlErrorMsg(spanPeopleError as HTMLElement);
+
   if (isInputValueInvalid(e)) {
     inputPeople!.value = formatInputValueToMoney(e);
+    controlError!.hide(inputWrapperPeople as HTMLElement);
   } else {
-    inputPeople!.value = "0";
+    controlError.show(inputWrapperPeople as HTMLElement, "Can't be zero");
   }
 });
 
