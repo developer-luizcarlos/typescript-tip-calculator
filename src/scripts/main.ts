@@ -10,7 +10,6 @@ const formatMoneyToInputValidValue = (e: Event) => {
   const inputValue = (e.target as HTMLInputElement).value;
   let formattedValue = inputValue;
 
-  // formattedValue = inputValue.slice(0, inputValue.indexOf("."));
   formattedValue = inputValue.replace(/[A-Z]|\,|\s|[^\w.]/gi, "").trim();
   return formattedValue;
 };
