@@ -97,7 +97,7 @@ inputPeople!.addEventListener("input", (e) => {
   const isValidValue = isInputValueValid(e) && Number(value) !== 0;
 
   if (isValidValue) {
-    controlError!.hide(inputWrapperPeople as HTMLElement);
+    controlError.hide(inputWrapperPeople as HTMLElement);
   } else {
     controlError.show(inputWrapperPeople as HTMLElement, "Can't be zero");
   }
