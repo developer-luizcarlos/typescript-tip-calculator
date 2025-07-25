@@ -5,6 +5,7 @@ const inputWrapperBill = document.querySelector(".input-wrapper--bill");
 const inputWrapperPeople = document.querySelector(".input-wrapper--people");
 const inputBill = document.querySelector("#input-bill");
 const inputPeople = document.querySelector("#input-people");
+const inputPercentage = document.querySelector(".input--percentage");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
 const tipInfo = {
@@ -59,6 +60,11 @@ btnsSelectPercentage.forEach((btn) => {
         const btnValueOnlyNumber = getNumericValueFromString(btnValue);
         tipInfo.percentage = btnValueOnlyNumber;
     });
+});
+inputPercentage.addEventListener("input", (e) => {
+    const value = e.target.value;
+    const isValidValue = isInputValueValid(e);
+    tipInfo.percentage = isValidValue ? Number(value) : 0;
 });
 inputBill.addEventListener("input", (e) => {
     const value = e.target.value;

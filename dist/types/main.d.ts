@@ -4,6 +4,7 @@ declare const inputWrapperBill: Element | null;
 declare const inputWrapperPeople: Element | null;
 declare const inputBill: HTMLInputElement | null;
 declare const inputPeople: HTMLInputElement | null;
+declare const inputPercentage: HTMLInputElement | null;
 declare const spanBillError: Element | null;
 declare const spanPeopleError: Element | null;
 declare const tipInfo: {
