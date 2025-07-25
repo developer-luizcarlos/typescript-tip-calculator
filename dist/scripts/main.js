@@ -50,7 +50,15 @@ calcForm.addEventListener("submit", (e) => {
 });
 inputBill.addEventListener("input", (e) => {
     const value = e.target.value;
-    tipInfo.bill = isInputValueValid(e) ? parseFloat(value) : 0;
+    const controlError = handleErrorMsg(spanBillError);
+    const isValidValue = isInputValueValid(e) && Number(value) !== 0;
+    if (isValidValue) {
+        controlError.hide(inputWrapperBill);
+    }
+    else {
+        controlError.show(inputWrapperBill, "Can't be zero");
+    }
+    tipInfo.bill = isValidValue ? parseFloat(value) : 0;
 });
 inputBill.addEventListener("blur", (e) => {
     const controlError = handleErrorMsg(spanBillError);
