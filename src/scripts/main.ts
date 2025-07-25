@@ -1,4 +1,7 @@
 // DOM Elements
+const btnsSelectPercentage = document.querySelectorAll<HTMLButtonElement>(
+  ".btn--select-percentage"
+);
 const calcForm = document.querySelector<HTMLFormElement>(".calc__form");
 const inputWrapperBill = document.querySelector(".input-wrapper--bill");
 const inputWrapperPeople = document.querySelector(".input-wrapper--people");
@@ -17,6 +20,10 @@ const tipInfo = {
 };
 
 // Functions
+const getNumericValueFromString = (string: String) => {
+  return parseFloat(string.replace(/[A-Z]|\s|\W/gi, "").trim());
+};
+
 const handleErrorMsg = (errorElement: HTMLElement) => {
   const show = (inputElement: HTMLElement, message: string) => {
     inputElement!.classList.add("input-wrapper--error");
@@ -60,6 +67,16 @@ const isInputValueValid = (e: Event) => {
 // Events/Functions Applied
 calcForm!.addEventListener("submit", (e) => {
   e.preventDefault();
+});
+
+btnsSelectPercentage.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const targetAsBtn = e.target as HTMLButtonElement;
+    const btnValue = targetAsBtn.innerText.trim();
+    const btnValueOnlyNumber = getNumericValueFromString(btnValue);
+
+    tipInfo.percentage = btnValueOnlyNumber;
+  });
 });
 
 inputBill!.addEventListener("input", (e) => {

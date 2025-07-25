@@ -1,3 +1,4 @@
+declare const btnsSelectPercentage: NodeListOf<HTMLButtonElement>;
 declare const calcForm: HTMLFormElement | null;
 declare const inputWrapperBill: Element | null;
 declare const inputWrapperPeople: Element | null;
@@ -12,6 +13,7 @@ declare const tipInfo: {
     tipAmount: number;
     tipPerPerson: number;
 };
+declare const getNumericValueFromString: (string: String) => number;
 declare const handleErrorMsg: (errorElement: HTMLElement) => {
     show: (inputElement: HTMLElement, message: string) => void;
     hide: (inputElement: HTMLElement) => void;

@@ -1,4 +1,5 @@
 "use strict";
+const btnsSelectPercentage = document.querySelectorAll(".btn--select-percentage");
 const calcForm = document.querySelector(".calc__form");
 const inputWrapperBill = document.querySelector(".input-wrapper--bill");
 const inputWrapperPeople = document.querySelector(".input-wrapper--people");
@@ -12,6 +13,9 @@ const tipInfo = {
     percentage: 0,
     tipAmount: 0,
     tipPerPerson: 0,
+};
+const getNumericValueFromString = (string) => {
+    return parseFloat(string.replace(/[A-Z]|\s|\W/gi, "").trim());
 };
 const handleErrorMsg = (errorElement) => {
     const show = (inputElement, message) => {
@@ -47,6 +51,14 @@ const isInputValueValid = (e) => {
 };
 calcForm.addEventListener("submit", (e) => {
     e.preventDefault();
+});
+btnsSelectPercentage.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        const targetAsBtn = e.target;
+        const btnValue = targetAsBtn.innerText.trim();
+        const btnValueOnlyNumber = getNumericValueFromString(btnValue);
+        tipInfo.percentage = btnValueOnlyNumber;
+    });
 });
 inputBill.addEventListener("input", (e) => {
     const value = e.target.value;
