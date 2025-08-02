@@ -14,6 +14,11 @@ declare const tipInfo: {
     tipAmount: number;
     tipPerPerson: number;
 };
+declare const displayTip: () => void;
+declare const evaluateTip: () => {
+    tipAmount: number;
+    tipPerPerson: number;
+};
 declare const getNumericValueFromString: (string: String) => number;
 declare const handleErrorMsg: (errorElement: HTMLElement) => {
     show: (inputElement: HTMLElement, message: string) => void;

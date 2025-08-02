@@ -22,6 +22,47 @@ const tipInfo = {
 };
 
 // Functions
+const displayTip = () => {
+  const spanTipAmount = document.querySelector(".tip-info__value--tip-amount");
+  const spanTipPerPerson = document.querySelector(
+    ".tip-info__value--total-per-person"
+  );
+  const isTipInfoValid =
+    tipInfo.bill != 0 && tipInfo.numberOfPeople != 0 && tipInfo.percentage != 0;
+
+  const handleBillError = handleErrorMsg(spanBillError as HTMLElement);
+  const handlePeopleError = handleErrorMsg(spanPeopleError as HTMLElement);
+
+  if (isTipInfoValid) {
+    handleBillError.hide(inputWrapperBill as HTMLElement);
+    handlePeopleError.hide(inputWrapperPeople as HTMLElement);
+
+    spanTipAmount!.textContent = evaluateTip().tipAmount.toString();
+    spanTipPerPerson!.textContent = evaluateTip().tipPerPerson.toString();
+  } else {
+    spanTipAmount!.textContent = (0).toString();
+    spanTipPerPerson!.textContent = (0).toString();
+
+    if (tipInfo.bill == 0) {
+      handleBillError.show(inputWrapperBill as HTMLElement, "Can't be zero");
+    } else if (tipInfo.numberOfPeople == 0) {
+      handlePeopleError.show(
+        inputWrapperPeople as HTMLElement,
+        "Can't be zero"
+      );
+    }
+  }
+};
+
+const evaluateTip = () => {
+  const tipAmount = tipInfo.bill * (tipInfo.percentage / 100);
+  const tipPerPerson = tipAmount / tipInfo.numberOfPeople;
+  return {
+    tipAmount,
+    tipPerPerson,
+  };
+};
+
 const getNumericValueFromString = (string: String) => {
   return parseFloat(string.replace(/[A-Z]|\s|\W/gi, "").trim());
 };
@@ -78,6 +119,7 @@ btnsSelectPercentage.forEach((btn) => {
     const btnValueOnlyNumber = getNumericValueFromString(btnValue);
 
     tipInfo.percentage = btnValueOnlyNumber;
+    displayTip();
   });
 });
 
@@ -86,6 +128,7 @@ inputPercentage!.addEventListener("input", (e) => {
   const isValidValue = isInputValueValid(e);
 
   tipInfo.percentage = isValidValue ? Number(value) : 0;
+  displayTip();
 });
 
 inputBill!.addEventListener("input", (e) => {
@@ -100,6 +143,8 @@ inputBill!.addEventListener("input", (e) => {
   }
 
   tipInfo.bill = isValidValue ? parseFloat(value) : 0;
+
+  displayTip();
 });
 
 inputBill!.addEventListener("blur", (e) => {
@@ -129,4 +174,5 @@ inputPeople!.addEventListener("input", (e) => {
   }
 
   tipInfo.numberOfPeople = isValidValue ? parseFloat(value) : 0;
+  displayTip();
 });

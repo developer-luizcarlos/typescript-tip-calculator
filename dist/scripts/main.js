@@ -15,6 +15,37 @@ const tipInfo = {
     tipAmount: 0,
     tipPerPerson: 0,
 };
+const displayTip = () => {
+    const spanTipAmount = document.querySelector(".tip-info__value--tip-amount");
+    const spanTipPerPerson = document.querySelector(".tip-info__value--total-per-person");
+    const isTipInfoValid = tipInfo.bill != 0 && tipInfo.numberOfPeople != 0 && tipInfo.percentage != 0;
+    const handleBillError = handleErrorMsg(spanBillError);
+    const handlePeopleError = handleErrorMsg(spanPeopleError);
+    if (isTipInfoValid) {
+        handleBillError.hide(inputWrapperBill);
+        handlePeopleError.hide(inputWrapperPeople);
+        spanTipAmount.textContent = evaluateTip().tipAmount.toString();
+        spanTipPerPerson.textContent = evaluateTip().tipPerPerson.toString();
+    }
+    else {
+        spanTipAmount.textContent = (0).toString();
+        spanTipPerPerson.textContent = (0).toString();
+        if (tipInfo.bill == 0) {
+            handleBillError.show(inputWrapperBill, "Can't be zero");
+        }
+        else if (tipInfo.numberOfPeople == 0) {
+            handlePeopleError.show(inputWrapperPeople, "Can't be zero");
+        }
+    }
+};
+const evaluateTip = () => {
+    const tipAmount = tipInfo.bill * (tipInfo.percentage / 100);
+    const tipPerPerson = tipAmount / tipInfo.numberOfPeople;
+    return {
+        tipAmount,
+        tipPerPerson,
+    };
+};
 const getNumericValueFromString = (string) => {
     return parseFloat(string.replace(/[A-Z]|\s|\W/gi, "").trim());
 };
@@ -59,12 +90,14 @@ btnsSelectPercentage.forEach((btn) => {
         const btnValue = targetAsBtn.innerText.trim();
         const btnValueOnlyNumber = getNumericValueFromString(btnValue);
         tipInfo.percentage = btnValueOnlyNumber;
+        displayTip();
     });
 });
 inputPercentage.addEventListener("input", (e) => {
     const value = e.target.value;
     const isValidValue = isInputValueValid(e);
     tipInfo.percentage = isValidValue ? Number(value) : 0;
+    displayTip();
 });
 inputBill.addEventListener("input", (e) => {
     const value = e.target.value;
@@ -77,6 +110,7 @@ inputBill.addEventListener("input", (e) => {
         controlError.show(inputWrapperBill, "Can't be zero");
     }
     tipInfo.bill = isValidValue ? parseFloat(value) : 0;
+    displayTip();
 });
 inputBill.addEventListener("blur", (e) => {
     const controlError = handleErrorMsg(spanBillError);
@@ -102,4 +136,5 @@ inputPeople.addEventListener("input", (e) => {
         controlError.show(inputWrapperPeople, "Can't be zero");
     }
     tipInfo.numberOfPeople = isValidValue ? parseFloat(value) : 0;
+    displayTip();
 });
