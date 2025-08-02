@@ -8,6 +8,8 @@ const inputPeople = document.querySelector("#input-people");
 const inputPercentage = document.querySelector(".input--percentage");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
+const spanTipAmount = document.querySelector(".tip-info__value--tip-amount");
+const spanTipPerPerson = document.querySelector(".tip-info__value--total-per-person");
 const tipInfo = {
     bill: 0,
     numberOfPeople: 0,
@@ -16,8 +18,6 @@ const tipInfo = {
     tipPerPerson: 0,
 };
 const displayTip = () => {
-    const spanTipAmount = document.querySelector(".tip-info__value--tip-amount");
-    const spanTipPerPerson = document.querySelector(".tip-info__value--total-per-person");
     const isTipInfoValid = tipInfo.bill != 0 && tipInfo.numberOfPeople != 0 && tipInfo.percentage != 0;
     const handleBillError = handleErrorMsg(spanBillError);
     const handlePeopleError = handleErrorMsg(spanPeopleError);
@@ -80,6 +80,19 @@ const isInputValueValid = (e) => {
     const isInvalidInputNumberValue = inputValue.trim() !== "" && !isNaN(Number(inputValue));
     return isInvalidInputNumberValue;
 };
+const resetValues = () => {
+    inputBill.value = "";
+    inputPeople.value = "";
+    inputPercentage.value = "";
+    tipInfo.bill = 0;
+    tipInfo.numberOfPeople = 0;
+    tipInfo.percentage = 0;
+    spanTipAmount.textContent = formatToMoney(0);
+    spanTipPerPerson.textContent = formatToMoney(0);
+};
+window.addEventListener("load", () => {
+    resetValues();
+});
 calcForm.addEventListener("submit", (e) => {
     e.preventDefault();
 });

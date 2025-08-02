@@ -7,6 +7,8 @@ declare const inputPeople: HTMLInputElement | null;
 declare const inputPercentage: HTMLInputElement | null;
 declare const spanBillError: Element | null;
 declare const spanPeopleError: Element | null;
+declare const spanTipAmount: Element | null;
+declare const spanTipPerPerson: Element | null;
 declare const tipInfo: {
     bill: number;
     numberOfPeople: number;
@@ -27,3 +29,4 @@ declare const handleErrorMsg: (errorElement: HTMLElement) => {
 declare const formatMoneyToInputValidValue: (e: Event) => string;
 declare const formatToMoney: (value: number) => string;
 declare const isInputValueValid: (e: Event) => boolean;
+declare const resetValues: () => void;
