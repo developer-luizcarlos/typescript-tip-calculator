@@ -7,6 +7,7 @@ declare const inputPeople: HTMLInputElement | null;
 declare const inputPercentage: HTMLInputElement | null;
 declare const spanBillError: Element | null;
 declare const spanPeopleError: Element | null;
+declare const spanPercentageError: Element | null;
 declare const spanTipAmount: Element | null;
 declare const spanTipPerPerson: Element | null;
 declare const tipInfo: {

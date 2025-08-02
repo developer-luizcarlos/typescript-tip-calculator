@@ -8,6 +8,7 @@ const inputPeople = document.querySelector("#input-people");
 const inputPercentage = document.querySelector(".input--percentage");
 const spanBillError = document.querySelector(".error-message--bill");
 const spanPeopleError = document.querySelector(".error-message--people");
+const spanPercentageError = document.querySelector(".error-message--percentage");
 const spanTipAmount = document.querySelector(".tip-info__value--tip-amount");
 const spanTipPerPerson = document.querySelector(".tip-info__value--total-per-person");
 const tipInfo = {
@@ -24,6 +25,7 @@ const displayTip = () => {
     if (isTipInfoValid) {
         handleBillError.hide(inputWrapperBill);
         handlePeopleError.hide(inputWrapperPeople);
+        spanPercentageError.style.visibility = "hidden";
         spanTipAmount.textContent = formatToMoney(evaluateTip().tipAmount);
         spanTipPerPerson.textContent = formatToMoney(evaluateTip().tipPerPerson);
     }
@@ -33,8 +35,11 @@ const displayTip = () => {
         if (tipInfo.bill == 0) {
             handleBillError.show(inputWrapperBill);
         }
-        else if (tipInfo.numberOfPeople == 0) {
+        if (tipInfo.numberOfPeople == 0) {
             handlePeopleError.show(inputWrapperPeople);
+        }
+        if (tipInfo.percentage == 0) {
+            spanPercentageError.style.visibility = "visible";
         }
     }
 };
