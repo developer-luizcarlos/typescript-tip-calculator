@@ -66,6 +66,12 @@ body {
   font-weight: bold;
 }
 
+.label-percentage-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .input-wrapper {
   background-color: var(--neutral-green-50);
   border-radius: 2px;
