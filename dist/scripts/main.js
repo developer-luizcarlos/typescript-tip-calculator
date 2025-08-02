@@ -31,10 +31,10 @@ const displayTip = () => {
         spanTipAmount.textContent = formatToMoney(0);
         spanTipPerPerson.textContent = formatToMoney(0);
         if (tipInfo.bill == 0) {
-            handleBillError.show(inputWrapperBill, "Can't be zero");
+            handleBillError.show(inputWrapperBill);
         }
         else if (tipInfo.numberOfPeople == 0) {
-            handlePeopleError.show(inputWrapperPeople, "Can't be zero");
+            handlePeopleError.show(inputWrapperPeople);
         }
     }
 };
@@ -53,7 +53,7 @@ const handleErrorMsg = (errorElement) => {
     const show = (inputElement, message) => {
         inputElement.classList.add("input-wrapper--error");
         errorElement.style.visibility = "visible";
-        errorElement.textContent = message;
+        errorElement.textContent = message || "Can't be zero";
     };
     const hide = (inputElement) => {
         inputElement.classList.remove("input-wrapper--error");
@@ -119,7 +119,7 @@ inputBill.addEventListener("input", (e) => {
         controlError.hide(inputWrapperBill);
     }
     else {
-        controlError.show(inputWrapperBill, "Can't be zero");
+        controlError.show(inputWrapperBill);
     }
     tipInfo.bill = isValidValue ? parseFloat(value) : 0;
     displayTip();
@@ -132,7 +132,7 @@ inputBill.addEventListener("blur", (e) => {
         controlError.hide(inputWrapperBill);
     }
     else {
-        controlError.show(inputWrapperBill, "Can't be zero");
+        controlError.show(inputWrapperBill);
     }
 });
 inputBill.addEventListener("focus", (e) => {
@@ -146,7 +146,7 @@ inputPeople.addEventListener("input", (e) => {
         controlError.hide(inputWrapperPeople);
     }
     else {
-        controlError.show(inputWrapperPeople, "Can't be zero");
+        controlError.show(inputWrapperPeople);
     }
     tipInfo.numberOfPeople = isValidValue ? parseFloat(value) : 0;
     displayTip();

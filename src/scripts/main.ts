@@ -43,12 +43,9 @@ const displayTip = () => {
     spanTipPerPerson!.textContent = formatToMoney(0);
 
     if (tipInfo.bill == 0) {
-      handleBillError.show(inputWrapperBill as HTMLElement, "Can't be zero");
+      handleBillError.show(inputWrapperBill as HTMLElement);
     } else if (tipInfo.numberOfPeople == 0) {
-      handlePeopleError.show(
-        inputWrapperPeople as HTMLElement,
-        "Can't be zero"
-      );
+      handlePeopleError.show(inputWrapperPeople as HTMLElement);
     }
   }
 };
@@ -67,10 +64,10 @@ const getNumericValueFromString = (string: String) => {
 };
 
 const handleErrorMsg = (errorElement: HTMLElement) => {
-  const show = (inputElement: HTMLElement, message: string) => {
+  const show = (inputElement: HTMLElement, message?: string) => {
     inputElement!.classList.add("input-wrapper--error");
     errorElement.style.visibility = "visible";
-    errorElement.textContent = message;
+    errorElement.textContent = message || "Can't be zero";
   };
 
   const hide = (inputElement: HTMLElement) => {
@@ -154,7 +151,7 @@ inputBill!.addEventListener("input", (e) => {
   if (isValidValue) {
     controlError.hide(inputWrapperBill as HTMLElement);
   } else {
-    controlError.show(inputWrapperBill as HTMLElement, "Can't be zero");
+    controlError.show(inputWrapperBill as HTMLElement);
   }
 
   tipInfo.bill = isValidValue ? parseFloat(value) : 0;
@@ -170,7 +167,7 @@ inputBill!.addEventListener("blur", (e) => {
     inputBill!.value = formatToMoney(Number(inputValue));
     controlError.hide(inputWrapperBill as HTMLElement);
   } else {
-    controlError.show(inputWrapperBill as HTMLElement, "Can't be zero");
+    controlError.show(inputWrapperBill as HTMLElement);
   }
 });
 
@@ -186,7 +183,7 @@ inputPeople!.addEventListener("input", (e) => {
   if (isValidValue) {
     controlError.hide(inputWrapperPeople as HTMLElement);
   } else {
-    controlError.show(inputWrapperPeople as HTMLElement, "Can't be zero");
+    controlError.show(inputWrapperPeople as HTMLElement);
   }
 
   tipInfo.numberOfPeople = isValidValue ? parseFloat(value) : 0;

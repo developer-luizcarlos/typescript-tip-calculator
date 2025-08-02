@@ -23,7 +23,7 @@ declare const evaluateTip: () => {
 };
 declare const getNumericValueFromString: (string: String) => number;
 declare const handleErrorMsg: (errorElement: HTMLElement) => {
-    show: (inputElement: HTMLElement, message: string) => void;
+    show: (inputElement: HTMLElement, message?: string) => void;
     hide: (inputElement: HTMLElement) => void;
 };
 declare const formatMoneyToInputValidValue: (e: Event) => string;
