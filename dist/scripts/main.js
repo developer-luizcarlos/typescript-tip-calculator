@@ -24,12 +24,12 @@ const displayTip = () => {
     if (isTipInfoValid) {
         handleBillError.hide(inputWrapperBill);
         handlePeopleError.hide(inputWrapperPeople);
-        spanTipAmount.textContent = evaluateTip().tipAmount.toString();
-        spanTipPerPerson.textContent = evaluateTip().tipPerPerson.toString();
+        spanTipAmount.textContent = formatToMoney(evaluateTip().tipAmount);
+        spanTipPerPerson.textContent = formatToMoney(evaluateTip().tipPerPerson);
     }
     else {
-        spanTipAmount.textContent = (0).toString();
-        spanTipPerPerson.textContent = (0).toString();
+        spanTipAmount.textContent = formatToMoney(0);
+        spanTipPerPerson.textContent = formatToMoney(0);
         if (tipInfo.bill == 0) {
             handleBillError.show(inputWrapperBill, "Can't be zero");
         }
@@ -67,13 +67,12 @@ const formatMoneyToInputValidValue = (e) => {
     formattedValue = inputValue.replace(/[A-Z]|\,|\s|[^\w.]/gi, "").trim();
     return formattedValue;
 };
-const formatInputValueToMoney = (e) => {
-    const inputValue = e.target.value;
+const formatToMoney = (value) => {
     const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
     });
-    const formattedValue = formatter.format(Number(inputValue));
+    const formattedValue = formatter.format(value);
     return formattedValue;
 };
 const isInputValueValid = (e) => {
@@ -113,9 +112,10 @@ inputBill.addEventListener("input", (e) => {
     displayTip();
 });
 inputBill.addEventListener("blur", (e) => {
+    const inputValue = e.target.value;
     const controlError = handleErrorMsg(spanBillError);
     if (isInputValueValid(e)) {
-        inputBill.value = formatInputValueToMoney(e);
+        inputBill.value = formatToMoney(Number(inputValue));
         controlError.hide(inputWrapperBill);
     }
     else {

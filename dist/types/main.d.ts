@@ -25,5 +25,5 @@ declare const handleErrorMsg: (errorElement: HTMLElement) => {
     hide: (inputElement: HTMLElement) => void;
 };
 declare const formatMoneyToInputValidValue: (e: Event) => string;
-declare const formatInputValueToMoney: (e: Event) => string;
+declare const formatToMoney: (value: number) => string;
 declare const isInputValueValid: (e: Event) => boolean;
